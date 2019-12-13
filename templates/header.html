@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>{% block title %}{% endblock %}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% load static %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link href='//fonts.googleapis.com/css?family=Roboto:100,200,400,300,500,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="icon" href="{% static 'personal/images/favicon.ico' %}">
+  <meta property="og:title" content="CodeVetica" />
+  <meta property="og:url" content="http://willxzhang.me" />
+  <meta property="og:image" content="http://willxzhang.me/static/personal/images/viewbackground.jpg" />
+  <meta property="og:description" content="CodeVetica is Will Zhang's foray away from PHP into Django." />
+  <style media="screen" type="text/css">{% block addcss %}{% endblock %}</style>
+</head>
+<body>
+<!--begin navbar-->
+<div id="navbar" class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/" title="Home"><p style="font-size:1.5em; padding-left:10px; color:#777;"><b class="navbar-brand-blue">Code</b><span style="font-size:8px"> </span>Vetica</p></a>
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span> 
+        </button>
+    </div>
+	
+	 <div class="collapse navbar-collapse" id="myNavbar">
+  	  <ul class="nav navbar-nav navbar-right text-center" style="padding-right:10px">
+        <li><a href="/apps" class="links">Applications</a></li>
+        <li><a href="/stockprices" class="links">Stock Prices</a></li>
+        <li><a href="/developers" class="links">Developers</a></li>
+        <li><a href="/contact" class="links">Contact</a></li> 
+      </ul>
+	 </div>
+  </div>
+</div>
+{% block content %}
+<!--end navbar, begin content-->
+{% endblock %}
+</body>
+</html>

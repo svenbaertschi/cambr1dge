@@ -1,0 +1,28 @@
+{% extends 'header.html' %}
+{% block title %}Weather | CodeVetica{% endblock %}
+{% block content %}
+
+<div class="vert-align-full text-center">
+	<div id = "container">
+		<h2>Useless Weather App</h2>
+			<div style="padding-top:30px;">
+				<form action='/weather/' method='post'>{% csrf_token %}
+				{% for field in form %}
+					<div class="fieldWrapper">
+						{{ field.errors }}
+						{{ field.label_tag }} <br>{{ field }}
+					</div>
+				{% endfor %}
+				<input type='submit' value='Get the Weather' />
+				</form>
+				<br>
+				<b>Weather in <a href="https://search.yahoo.com/search;_ylt=A0SO80HYe3lZ3dwANY1XNyoA;_ylc=X1MDMjc2NjY3OQRfcgMyBGZyA3VoM19tYWd3ZWF0aGVyX3dlYl9ncwRncHJpZANjQ2F4eWk4VFNXS1hfV0tfVFhKbWtBBG5fcnNsdAMwBG5fc3VnZwMxMARvcmlnaW4Dc2VhcmNoLnlhaG9vLmNvbQRwb3MDMARwcXN0cgMEcHFzdHJsAzAEcXN0cmwDMjQEcXVlcnkDdmFuY291dmVyJTIwYmMlMjB3ZWF0aGVyBHRfc3RtcAMxNTAxMTMzNzg5?p={{locale.city}}+{{locale.region}}+weather&fr2=sb-top&fr=uh3_magweather_web_gs" class="links">{{locale.city}}, {{locale.region}}:</a></b>
+				<p style="padding-top:10px;">Conditions: {{condition.text}}</p>
+				<p>Temperature: {{condition.temp}} degrees celcius</p>
+				<p>Min Temp: {{forecast.low}} degrees celcius</p>
+				<p>Max Temp: {{forecast.high}} degrees celcius</p>
+			</div>
+	</div>
+</div>
+
+{% endblock %}

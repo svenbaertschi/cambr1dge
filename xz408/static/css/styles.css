@@ -1,0 +1,136 @@
+body {padding-top:70px; font-family: 'Roboto';} 
+a.links {color: #30afff; text-decoration: none;}
+a.links:visited {color: #30afff;}
+a.links:hover {color: #777;}
+#navbar a {font-family: 'Roboto'; font-size: 120%;}
+#navbar a.links:link {font-size: 120%} 
+#navbar a.links:visited {font-size: 120%}
+#navbar a.links:hover {color: #30afff!important ; }
+#navbar a.links:active {color: #30afff!important ; }
+a.link-dark {color: black; text-decoration: none; font-weight: 400; font-size: 3em; }
+a.link-dark:visited {color: black;}
+a.link-dark:hover {color: #30afff;}
+a.link-dark:active {color: #30afff;}
+
+.navbar {
+  background-color: white;
+  padding: 10px 0 10px 0;
+  -webkit-box-shadow: 0 4px 4px -4px #999;
+  -moz-box-shadow: 0 4px 4px -4px #999;
+  box-shadow: 0 4px 4px -4px #999;
+
+}
+p, h1, h2, h3, h4, h5 {
+  font-family: 'Roboto';
+  color: #383838;
+}
+h1 {color: black; text-decoration: none; font-weight: 400; font-size: 3em; }
+h2 {font-weight: 500;}
+
+h10 {
+      font-family: 'Roboto', Helvetica, sans-serif;
+      font-size: 200%;
+      text-align: center;
+      margin: 0;
+		  padding-left: 1%;
+		  background: rgb(0, 0, 0); /* fallback color */
+      background: rgba(0, 0, 0, 0.6);
+      font-weight: 300;
+      padding-right: 2%;
+
+}
+
+h11 {
+      font-family: 'Roboto', Helvetica, sans-serif;
+      font-size: 200%;
+      color: #38ACEC; 
+      text-align:center;
+		  margin: 0;
+		  background: rgb(0, 0, 0); /* fallback color */
+      background: rgba(0, 0, 0, 0.6);
+      font-weight: 300;
+      padding-left:2%;
+}
+
+.carousel-title {
+  position: absolute !important;
+  right: 15% !important;
+  bottom: 38% !important;
+  left: 15% !important;
+  z-index: 10;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  color: #fff;
+  text-align: center;
+}
+
+.navbar-brand-blue {
+  font-family: 'Roboto';
+  color: #30afff;
+  font-weight:500;
+}
+
+.fieldWrapper {
+  padding: 0 0 10px 0;
+}
+
+
+#id_location {
+  text-align:center;
+}
+/*.navbar {display:none!important;}*/
+/* "full screen" text align in middle, roughly */
+.vert-align-full {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: -o-calc(75vh); /* opera */
+    height: -webkit-calc(75vh); /* google, safari */
+    height: -moz-calc(75vh); /* firefox */
+}
+
+/* NavBar toggle border */
+@media (max-width: 767px) {
+    .navbar-toggle {
+      border: none;
+      outline: none;
+    }
+    .vert-align-full {
+    padding-top:70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 450px;
+  }
+}
+/* Responsive */
+@media (min-width: 768px) {
+  .reappear {
+    display:none !important;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  h10 {
+        font-size:400%;
+  }
+  h11 {
+        font-size:400%;
+  }
+}
+
+@media (min-width: 1200px) {
+  h10 {
+        font-size:700%;
+  }
+  h11 {
+        font-size:700%;
+  }
+}
+
+/* OCD fix for carousel buttons */
+.carousel-control:focus {
+    opacity: 0.5;
+}
+.carousel-control:focus:hover {
+    opacity: 0.9;
+}
