@@ -2,8 +2,8 @@
 {% block title %}stonks | CodeVetica{% endblock %}
 {% block content %}
 
-<div class="vert-align-full text-center">
-	<div id = "container">
+<div class="vert-align-full text-center" style="padding-top: 50px">
+	<div id = "container"><br>
 		<h2>Stock Data Downloader</h2>
 			<div style="padding-top:30px;">
 				<form action='/stockprices/' method='post'>{% csrf_token %}
