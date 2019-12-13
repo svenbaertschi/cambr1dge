@@ -19,6 +19,7 @@ from django.urls import path
 
 
 urlpatterns = [
+    path('static/', serve,{'document_root': settings.STATIC_ROOT}),
     path('', include('xz408.urls')),
     path('stockprices/', include('stockprices.urls')),
     path('admin/', admin.site.urls),
