@@ -78,9 +78,9 @@ def upload_csv(request):
     # for the new workbook
 	excel_file = IO()
 	xlwriter = pd.ExcelWriter(excel_file, engine='xlsxwriter')
-	dfmaxsharpe.to_excel(xlwriter, 'MaxSharpe:econometrica')
-	dfminvar.to_excel(xlwriter, 'MinVar:econometrica')
-	dfportfolios.to_excel(xlwriter, 'FrontierPortfolios:econometrica')
+	dfmaxsharpe.to_excel(xlwriter, 'MaxSharpe')
+	dfminvar.to_excel(xlwriter, 'MinVar')
+	dfportfolios.to_excel(xlwriter, 'FrontierPortfolios')
 
 	xlwriter.save()
 	xlwriter.close()
