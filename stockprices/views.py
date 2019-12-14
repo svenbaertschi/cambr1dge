@@ -102,8 +102,6 @@ def stocks(request):
 
     return render(request, 'stockprices/index.html', {'form':form})
 
-
-
 def stocksaction(request, start, end, periodicity, tickers):
     from datetime import datetime
     import xlsxwriter
@@ -117,6 +115,10 @@ def stocksaction(request, start, end, periodicity, tickers):
     end = datetime.datetime.strptime(end, "%Y-%m-%d")
 
     df = yf.download(tickers.split(" "), start = start, end = end, interval = periodicity)
+    
+    if (periodicity = "1mo"):
+        df = df[(df.index.day == 1)]
+    df.index = df.index.strftime("%Y-%m-%d")
     
     try:
         from io import BytesIO as IO # for modern python
@@ -141,6 +143,6 @@ def stocksaction(request, start, end, periodicity, tickers):
     response = HttpResponse(excel_file.read(), content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
 
     # set the file name in the Content-Disposition header
-    response['Content-Disposition'] = 'attachment; filename=wzdata.xlsx'
+    response['Content-Disposition'] = 'attachment; filename=cambr1dge_stockdata.xlsx'
 
     return response
