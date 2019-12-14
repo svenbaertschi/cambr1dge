@@ -4,7 +4,7 @@
 
 <div class="vert-align-full text-center" style="padding-top: 50px">
 	<div id = "container"><br>
-		<h2>cambr1dge econometrica</h2><br>
+		<h2>portfolio optimization</h2><br>
 			<div style="padding-top:30px;">
 				<form action="" method="POST" enctype="multipart/form-data" class="form-horizontal"> 
 					{% csrf_token %}
@@ -23,9 +23,9 @@
 				<br>
 				<b>Accepts CSV files only</b><br>
 				<b>Outputs xlsx file with 2 sheets</b>
-				<p style="padding-top:10px;">cell A1 of input file must be "date" <br>(you can make up the dates or even use do 1,2,3...)</p>
-				<p>Rest of first row should be stock/index names</p>
-				<p>Data should be in "returns" format with any periodicity (<b>not prices</b>)</p>
+				<p style="padding-top:10px;">Cell A1 of input file must be "date" (case-sensitive) <br>(you can make up the dates or even use do 1,2,3...)</p>
+				<p>Rest of first row should be stock/index names/tickers/whatever</p>
+				<p>Data should be in "returns" <b>(not prices)</b> format with any periodicity<br>(monthly... daily... doesn't matter) </p>
 			</div>
 	</div>
 </div>
