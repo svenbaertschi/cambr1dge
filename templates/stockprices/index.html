@@ -3,8 +3,8 @@
 {% block content %}
 
 <div class="vert-align-full text-center" style="padding-top: 50px">
-	<div id = "container"><br>
-		<h2>cambr1dge stock data</h2>
+	<div id = "container" style="padding-top:6em">
+		<h2>stocks dataserver</h2>
 			<div style="padding-top:30px;">
 				<form action='/stockprices/' method='post'>{% csrf_token %}
 				{% for field in form %}
