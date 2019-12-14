@@ -5,6 +5,7 @@ from django.contrib import messages
 from datetime import datetime
 import xlsxwriter
 import pandas as pd
+import numpy as np
 import datetime
 import pandas_datareader
 import yfinance as yf
@@ -37,18 +38,42 @@ def upload_csv(request):
 	#Max Sharpe
 	raw_weights = ef.max_sharpe()
 	cleaned_weights = ef.clean_weights()
-	ef.portfolio_performance(verbose=True)
-	df1 = pd.DataFrame(ef.portfolio_performance(), index = ['mean', 'stdev', 'sharpe'])
+	efgdamn = {"mean":ef.portfolio_performance()[0], "stdev":ef.portfolio_performance()[1], "sharpe":ef.portfolio_performance()[2]}
+	df1 = pd.DataFrame(efgdamn, index = ['values'])
 	df2 = pd.DataFrame(cleaned_weights, index = ['weights'])
 	dfmaxsharpe = pd.concat([df1, df2], axis=1)
 
 	#minVar
 	raw_weights = ef.min_volatility()
 	cleaned_weights = ef.clean_weights()
-	ef.portfolio_performance(verbose=True)
-	df1 = pd.DataFrame(ef.portfolio_performance(), index = ['mean', 'stdev', 'sharpe'])
+	efgdamn = {"mean":ef.portfolio_performance()[0], "stdev":ef.portfolio_performance()[1], "sharpe":ef.portfolio_performance()[2]}
+	df1 = pd.DataFrame(efgdamn, index = ['values'])
 	df2 = pd.DataFrame(cleaned_weights, index = ['weights'])
 	dfminvar = pd.concat([df1, df2], axis=1)
+
+	#frontier
+	min_var = min(np.diagonal(S))
+	max_var = max(np.diagonal(S))
+	min_mu = min(mu)
+	max_mu = max(mu)
+
+	raw_weights = ef.efficient_return(min_mu)
+	cleaned_weights = ef.clean_weights()
+	efgdamn = {"mean":ef.portfolio_performance()[0], "stdev":ef.portfolio_performance()[1], "sharpe":ef.portfolio_performance()[2]}
+	efgdamn = {**efgdamn, **cleaned_weights}
+	dfportfolios = pd.DataFrame(efgdamn, index = [1])
+	print(dfportfolios)
+
+	while (min_mu <= max_mu):
+		raw_weights = ef.efficient_return(min_mu)
+		cleaned_weights = ef.clean_weights()
+		efgdamn = {"mean":ef.portfolio_performance()[0], "stdev":ef.portfolio_performance()[1], "sharpe":ef.portfolio_performance()[2]}
+		efgdamn = {**efgdamn, **cleaned_weights}
+		aaawtf = pd.DataFrame(efgdamn, columns = dfportfolios.columns, index= [1]) 
+		dfportfolios = dfportfolios.append(aaawtf)
+		min_mu +=max_mu*0.01
+
+	print(dfportfolios)
 	try:
 		from io import BytesIO as IO
 	except ImportError:
@@ -59,6 +84,7 @@ def upload_csv(request):
 	xlwriter = pd.ExcelWriter(excel_file, engine='xlsxwriter')
 	dfmaxsharpe.to_excel(xlwriter, 'econometrica-MaxSharpe')
 	dfminvar.to_excel(xlwriter, 'econometrica-MinVar')
+	dfportfolios.to_excel(xlwriter, 'econometrica-Portfolios')
 
 	xlwriter.save()
 	xlwriter.close()
@@ -105,6 +131,6 @@ def stocksaction(request, start, end, periodicity, tickers):
     response = HttpResponse(excel_file.read(), content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
 
     # set the file name in the Content-Disposition header
-    response['Content-Disposition'] = 'attachment; filename=wzdata.xlsx'
+    response['Content-Disposition'] = 'attachment; filename=cambr1dge-stock-data.xlsx'
 
     return response
