@@ -116,7 +116,7 @@ def stocksaction(request, start, end, periodicity, tickers):
 
     df = yf.download(tickers.split(" "), start = start, end = end, interval = periodicity)
     
-    if (periodicity = "1mo"):
+    if (periodicity == "1mo"):
         df = df[(df.index.day == 1)]
     df.index = df.index.strftime("%Y-%m-%d")
     
