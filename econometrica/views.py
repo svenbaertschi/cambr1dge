@@ -25,8 +25,11 @@ def upload_csv(request):
 	if request.method == "GET":
 		return render(request, template)
 	csv_file = request.FILES['file']
-# Read in price data
-	df = pd.read_csv(csv_file, parse_dates=True, index_col="date")
+# Read in data
+	try:
+		df = pd.read_csv(csv_file, parse_dates=True, index_col="date")
+	except:
+		df = pd.read_excel(csv_file, parse_dates=True, index_col="date")
 
 # Calculate expected returns and sample covariance
 	mu = df.mean()

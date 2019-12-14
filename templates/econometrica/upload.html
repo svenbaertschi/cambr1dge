@@ -11,7 +11,7 @@
 					<div class="form-group">
 						<label for="name" class="col-md-3 col-sm-3 col-xs-12 control-label">File: </label>
 						<div class="col-md-8">
-							<input type="file" name="file" id="file" required="True" class="form-control">
+							<input type="file" name="file" id="file" required="True" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" class="form-control">
 						</div>
 						<br><br><br>
 						<label>Procedure:</label>
@@ -26,7 +26,7 @@
 					</div>
 					</form>
 				<br>
-				<b>Accepts CSV files only</b><br>
+				<b>Accepts CSV AND Excel files only</b><br>
 				<b>Outputs xlsx file with 3 sheets</b>
 				<p style="padding-top:10px;">Cell A1 of input file must be "date" (case-sensitive) <br>(you can make up the dates or even use do 1,2,3...)</p>
 				<p>Rest of first row should be stock/index names/tickers/whatever</p>
