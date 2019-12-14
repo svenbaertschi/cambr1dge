@@ -52,8 +52,6 @@ def upload_csv(request):
 	dfminvar = pd.concat([df1, df2], axis=1)
 
 	#frontier
-	min_var = min(np.diagonal(S))
-	max_var = max(np.diagonal(S))
 	min_mu = min(mu)
 	max_mu = max(mu)
 
@@ -62,7 +60,6 @@ def upload_csv(request):
 	efgdamn = {"mean":ef.portfolio_performance()[0], "stdev":ef.portfolio_performance()[1], "sharpe":ef.portfolio_performance()[2]}
 	efgdamn = {**efgdamn, **cleaned_weights}
 	dfportfolios = pd.DataFrame(efgdamn, index = [1])
-	print(dfportfolios)
 
 	while (min_mu <= max_mu):
 		raw_weights = ef.efficient_return(min_mu)
@@ -73,7 +70,6 @@ def upload_csv(request):
 		dfportfolios = dfportfolios.append(aaawtf)
 		min_mu +=max_mu*0.01
 
-	print(dfportfolios)
 	try:
 		from io import BytesIO as IO
 	except ImportError:
@@ -82,9 +78,9 @@ def upload_csv(request):
     # for the new workbook
 	excel_file = IO()
 	xlwriter = pd.ExcelWriter(excel_file, engine='xlsxwriter')
-	dfmaxsharpe.to_excel(xlwriter, 'econometrica-MaxSharpe')
-	dfminvar.to_excel(xlwriter, 'econometrica-MinVar')
-	dfportfolios.to_excel(xlwriter, 'econometrica-Portfolios')
+	dfmaxsharpe.to_excel(xlwriter, 'MaxSharpe:econometrica')
+	dfminvar.to_excel(xlwriter, 'MinVar:econometrica')
+	dfportfolios.to_excel(xlwriter, 'FrontierPortfolios:econometrica')
 
 	xlwriter.save()
 	xlwriter.close()
