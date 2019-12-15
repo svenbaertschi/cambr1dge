@@ -2,6 +2,7 @@
 {% block title %}econometrica | CodeVetica{% endblock %}
 {% block content %}
 <style>
+body{padding-top:80px;}
 select{
 	padding-left:5px;
 	padding-right:5px;
@@ -38,11 +39,12 @@ select{
 				<b><a href="https://i.imgur.com/9OhNIis.png">Accepts Excel or CSV files (see examples)</a></b><br>
 				<i>Outputs multi-sheet(!) .xlsx file</i>
 				<b><p style="padding-top:10px;">First column should be DATE</b>
-				<br><i>(if no dates available, use 1,2,3...)</i></p>
-				<p><b>Rest of first row should be stock/index names/tickers/whatever</b></p>
+				<br><i>If no dates available, use 1,2,3...</i></p>
+				<p><b>Rest of first row should be stock/index names/tickers etc.</b>
+				<br><i>No duplicate labels</i></p>
 				<p><b>Data should be "returns" </b><br>
-				<i>(can be 0-1 or 0-100, no % symbols)</i></p>
-				<i>Periodicity can be any annually, monthly, daily etc... Be consistent</i>
+				<i>Can be 0-1 or 0-100, no % symbols</i></p>
+				<i>Periodicity can be any annually, monthly, daily etc...</i>
 			</div>
 	</div>
 </div>
