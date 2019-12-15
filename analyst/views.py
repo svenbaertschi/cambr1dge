@@ -5,8 +5,8 @@ import xlsxwriter
 import pandas as pd
 import numpy as np
 import pandas_datareader
-from econometrica.procedures import *
-from econometrica.forms import Options
+from analyst.procedures import *
+from analyst.forms import Options
 
 
 # Create your views here.
