@@ -1,4 +1,3 @@
-# one parameter named request
 def markowitz_optimization(data):
 	import pandas as pd
 	import numpy as np
@@ -54,7 +53,7 @@ def correlation(data):
 	import pandas as pd
 	import numpy as np
 
-	return {"Correlations":pd.DataFrame(data.corr())}
+	return {"Correlations":pd.DataFrame(data.corr(method='pearson'))}
 
 def covariance(data):
 	import pandas as pd

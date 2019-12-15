@@ -1,12 +1,9 @@
 import csv, io
 from django.http import HttpResponse
 from django.shortcuts import render
-from django.contrib import messages
-from datetime import datetime
 import xlsxwriter
 import pandas as pd
 import numpy as np
-import datetime
 import pandas_datareader
 from econometrica.procedures import *
 from econometrica.forms import Options
@@ -25,9 +22,9 @@ def upload_csv(request):
 	csv_file = request.FILES['file']
 # Read in data
 	try:
-		df = pd.read_csv(csv_file, parse_dates=True, index_col="date")
+		df = pd.read_csv(csv_file, parse_dates=True, index_col=0)
 	except:
-		df = pd.read_excel(csv_file, parse_dates=True, index_col="date")
+		df = pd.read_excel(csv_file, parse_dates=True, index_col=0)
 	
 	##Perform our precedures
 	if procedure == 'markowitz':
