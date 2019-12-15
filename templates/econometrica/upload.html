@@ -1,6 +1,12 @@
 {% extends 'header.html' %}
 {% block title %}econometrica | CodeVetica{% endblock %}
 {% block content %}
+<style>
+select{
+	padding-left:5px;
+	padding-right:5px;
+    text-align-last:center;
+}</style>
 
 <div class="vert-align-full text-center" style="padding-top: 50px">
 	<div id = "container"><br>
@@ -14,13 +20,15 @@
 							<input type="file" name="file" id="file" required="True" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" class="form-control">
 						</div>
 						<br><br><br>
-						<label>Procedure:</label>
-						<select>
-							<option value="mvp">Portfolio Optimization</option>
-						</select><br><br> 
+						{% for field in form %}
+						<div class="fieldWrapper">
+							{{ field.errors }}
+							{{ field.label_tag }} <br>{{ field }}
+						</div>
+						{% endfor %}
 					</div>
 					<div class="form-group">                
-						<div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-5" style="margin-bottom:10px; text-align:center;">
+						<div style="margin: auto; text-align:center;">
 							 <button class="btn btn-primary" style="text-align:center;"> <span class="glyphicon glyphicon-upload" style="margin-right:5px;"></span>Upload </button>
 						</div> 
 					</div>
