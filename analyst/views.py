@@ -15,7 +15,7 @@ from analyst.forms import Options
 def upload_csv(request):
 	procedure = request.POST.get('procedure', False)
 # declaring template
-	template = "econometrica/upload.html"
+	template = "analysis/upload.html"
 	# GET request returns the value of the data with the specified key.
 	if request.method == "GET":
 		return render(request, template, {'form':Options})
@@ -29,10 +29,10 @@ def upload_csv(request):
 	##Perform our precedures
 	if procedure == 'markowitz':
 		output = markowitz_optimization(df)
-	elif procedure == 'correlation':
-		output = correlation(df)
-	elif procedure == 'covariance':
-		output = covariance(df)
+	elif procedure == 'corrcov':
+		output = corrcov(df)
+	elif procedure == 'pca':
+		output = pca(df)
 
 	try:
 		from io import BytesIO as IO
@@ -57,5 +57,5 @@ def upload_csv(request):
 	response = HttpResponse(excel_file.read(), content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
 
     # set the file name in the Content-Disposition header
-	response['Content-Disposition'] = 'attachment; filename=econometrica-results.xlsx'
+	response['Content-Disposition'] = 'attachment; filename=CambridgeAlpha-results.xlsx'
 	return response

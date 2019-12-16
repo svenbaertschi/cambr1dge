@@ -45,17 +45,36 @@ def markowitz_optimization(data):
 		efgdamn = {**efgdamn, **cleaned_weights}
 		aaawtf = pd.DataFrame(efgdamn, columns = EfficientFrontier.columns, index= [1]) 
 		EfficientFrontier = EfficientFrontier.append(aaawtf)
-		min_mu +=max_mu*0.01
+		min_mu +=max_mu*0.005
 	
 	return {"MaxSharpe":MaxSharpe, "MinVar":MinVar, "EfficientFrontier":EfficientFrontier}
 
-def correlation(data):
+def corrcov(data):
 	import pandas as pd
 	import numpy as np
 
-	return {"Correlations":pd.DataFrame(data.corr(method='pearson'))}
+	return {"Correlations":pd.DataFrame(data.corr(method='pearson')),'Covariances':pd.DataFrame(data.cov())}
 
-def covariance(data):
+def pca(data):
+	import csv
 	import pandas as pd
+	from sklearn.preprocessing import StandardScaler
+	from sklearn.decomposition import PCA
 
-	return{'Covariances':pd.DataFrame(data.cov())}
+	data_scaled = StandardScaler().fit_transform(data)
+	pca = PCA(n_components=data_scaled.shape[1])
+	pca.fit_transform(data_scaled)
+
+	explained_var = pca.explained_variance_ratio_
+	explained_var_df = {}
+	for i in range(0,len(explained_var)):
+		explained_var_df["PC"+str(i+1)] = explained_var[i]
+	explained_var_df = pd.DataFrame([explained_var_df], index=["Explained Var. Ratio"])
+
+	values = pca.components_
+	col_index = []
+	for i in range(0,data.shape[1]):
+		col_index.append("PC" + str(i+1))
+
+	values_df = pd.DataFrame(values, columns = data.columns, index=col_index)
+	return({'Principal Components':explained_var_df, 'Factor Loadings':values_df.transpose()})
